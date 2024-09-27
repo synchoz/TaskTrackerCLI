@@ -1,0 +1,14 @@
+{
+  "name": "tasktracker",
+  "version": "1.0.0",
+  "description": "\u001b[A\u001b[A\u001b[B\u001b[BCLI to track tasks and to do",
+  "main": "bin/index.js",
+  "bin":{
+    "tsk": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dima Varo",
+  "license": "ISC"
+}
