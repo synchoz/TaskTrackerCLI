@@ -1,4 +1,4 @@
-const { _tasks,_initialStatus,   _isFileExists} = require('../src/constants');
+const { _tasks,_initialStatus} = require('../src/constants');
 const {getCurrentDate, writeContentToJSON, getNewId, appendObjToExistingJSON} = require('../src/utils');
 
 function addTask(taskName) {
@@ -11,11 +11,9 @@ function addTask(taskName) {
         createdAt: getCurrentDate(),
         updatedAt: "",
     };
-    const newContent = _isFileExists
-        ? appendObjToExistingJSON(_tasks, jsonObj)
-        : jsonObj;
+    const newContent = appendObjToExistingJSON(_tasks, jsonObj);
     writeContentToJSON(newContent);
-    return `Task added succesfull (Id: ${newId})`;
+    return `Task added succesfully (Id: ${newId})`;
 }
 
 function updateTasks(id, action, description) {
@@ -35,23 +33,18 @@ function updateTasks(id, action, description) {
             break;
     }
 
-    console.log(newTasksList);
-
     writeContentToJSON(newTasksList);
 }
 
 function updateTaskByActionId(id, actionRequired, userInput) {
-    console.log(id, actionRequired, userInput);
     const modifiedTasks = _tasks.map((task) => {
         if (task.id == id && actionRequired == "status") {
-            console.log(actionRequired);
             return {
                 ...task,
                 status: userInput.substring(5),
                 updatedAt: getCurrentDate(),
             };
         } else if (task.id == id && actionRequired == "description") {
-            console.log(actionRequired);
             return { ...task, description: userInput == undefined ? "" : userInput, updatedAt: getCurrentDate() };
         } else {
             return task;

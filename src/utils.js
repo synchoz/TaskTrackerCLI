@@ -24,7 +24,16 @@ function checkIsJSONExists() {
 }
 
 function appendObjToExistingJSON(tasksData, jsonObj) {
-    return [...tasksData, jsonObj];
+    let newContent;
+    console.log(tasksData.length, jsonObj)
+    if(tasksData.length == 0) {
+        newContent = [jsonObj];
+    } else {
+
+        newContent = [...tasksData, jsonObj];
+    }
+
+    return newContent;
 }
 
 function writeContentToJSON(newContent) {
